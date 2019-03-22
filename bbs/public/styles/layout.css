@@ -1,0 +1,37 @@
+.clear:after{
+	display: block;
+	height: 0;
+	content: '.';
+	visibility: hidden;
+	clear: both;
+}
+.clear{
+	zoom:1;
+}
+#container{
+	width:800px;
+	margin:0 auto;
+}
+#container #subject{
+	font-size:24px;
+	line-height:50px;
+	font-weight:bold;
+}
+#container table{
+	width:100%;
+	border-top:1px solid #ccc;
+	border-left:1px solid #ccc;
+}
+#container td{
+	padding:10px;
+	border-right:1px solid #ccc;
+	border-bottom:1px solid #ccc;
+}
+a.add-user{
+	float:right;
+	margin-right:10px;
+	font-size:14px;
+	font-weight: normal;
+	text-decoration: none;
+	color: #900;
+}
