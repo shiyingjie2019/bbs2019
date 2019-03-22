@@ -1,3 +1,7 @@
+﻿CREATE DATABASE IF NOT EXISTS bbs DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+
+USE bbs;
+
 CREATE TABLE BbsUser(#用户表
 	UID   				 INT			 NOT NULL 		 PRIMARY KEY,#用户ID
 	Uname 				 VARCHAR(10) 	 NOT NULL		 UNIQUE,	#用户昵称
@@ -7,7 +11,7 @@ CREATE TABLE BbsUser(#用户表
 	USex 				 INT			 NOT NULL,					#性别
 	UHead				 VARCHAR(20),								#头像
 	USatement			 VARCHAR(20),								#用户备注
-	URegDate			 DATEMENT		NOT NULL,					#创建时间
+	URegDate			 DATETIME		NOT NULL DEFAULT CURRENT_TIMESTAMP,		#创建时间
 	UState				 INT,										#用户状态
 	UPoint				 INT,										#用户积分
 	UIsSectioner		 INT            default 0					#是否为版主,默认不是版主
@@ -50,6 +54,6 @@ CREATE TABLE BbsReply(#跟帖表
 	RUID			INT 		NOT	NULL,					#发表人ID
 	TEmotion		VARCHAR(20)	NOT	NULL,					#发表表情
 	RContent		VARCHAR(20)	NOT	NULL,					#回帖内容
-	RTime			INT 		NOT	NULL DEFAULT CURRENT_TIMESTAMP#回帖时间
+	RTime			DATETIME	NOT	NULL DEFAULT CURRENT_TIMESTAMP#回帖时间
 	);
 
