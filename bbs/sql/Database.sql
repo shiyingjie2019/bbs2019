@@ -5,10 +5,10 @@ USE bbs;
 CREATE TABLE BbsUser(#用户表 
 	UID   				 INT			auto_increment	PRIMARY KEY,   #用户ID
 	Uname 				 VARCHAR(10) 	 NOT NULL		 UNIQUE,	#用户昵称
-	UPassword			 VARCHAR(20)	 NOT NULL,				#密码
+	UPassword			 VARCHAR(50)	 NOT NULL,				#密码
 	UEmail 				 VARCHAR(20)	 NOT NULL,				#电子邮件
 	UBirthday			 VARCHAR(20),						#生日
-	USex 				 INT		 NOT NULL,				#性别
+	USex 				 INT		     NOT NULL,			#性别
 	UHead				 VARCHAR(20),						#头像
 	USatement			 VARCHAR(20),						#用户备注
 	URegDate			 DATETIME	 NOT NULL DEFAULT CURRENT_TIMESTAMP,	#创建时间
@@ -57,10 +57,10 @@ CREATE TABLE BbsReply(#跟帖表
 	RTime			DATETIME	NOT	NULL DEFAULT CURRENT_TIMESTAMP#回帖时间
 	);
 
-alter table bbssession modify SID INT auto_increment PRIMARY KEY;
-alter table bbsuser modify UID INT auto_increment PRIMARY KEY;
-alter table bbstopic modify TID INT auto_increment PRIMARY KEY;
-alter table bbsreply modify RID INT auto_increment PRIMARY KEY;
+alter table bbssession modify SID INT auto_increment ;
+alter table bbsuser modify UID INT auto_increment ;
+alter table bbstopic modify TID INT auto_increment ;
+alter table bbsreply modify RID INT auto_increment ;
 
 insert into bbssession (SName,SMasterID)values('论坛首页',1);
 insert into bbssession (SName,SMasterID)values('切换版块',2);

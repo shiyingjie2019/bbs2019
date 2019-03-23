@@ -4,6 +4,8 @@ namespace App\Http\Controllers\bbs\home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Models\Bbssession;
+use App\Http\Models\Bbsuser;
 
 class IndexController extends Controller
 {
@@ -13,17 +15,22 @@ class IndexController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {	$navbars = Bbssession::all();
+		
+		return view('bbs.home.index')->with('navbars',$navbars);
+		
     }
 	// Login 
 	public function login(){
-		return view('bbs.home.login');
+		$navbars = Bbssession::all();
+		
+		return view('bbs.home.login')->with('navbars',$navbars);
 	}
 	// add 
 	public function addUser()
-	{
-		return view('bbs.home.addUser');
+	{	$navbars = Bbssession::all();
+	
+		return view('bbs.home.addUser')->with('navbars',$navbars);
 	}
     /**
      * Show the form for creating a new resource.
@@ -44,6 +51,10 @@ class IndexController extends Controller
     public function store(Request $request)
     {
         //
+		$data = $request->except(['_token']);
+		$data['UPassword']=md5($request['UPassword']);
+		Bbsuser::create($data);
+		
     }
 
     /**

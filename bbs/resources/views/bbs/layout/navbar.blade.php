@@ -1,10 +1,7 @@
 <div class="alert alert-primary" role="alert">
 		<div class="btn-group" role="group" aria-label="Basic example">
-		  <button type="button" class="btn btn-secondary">Left</button>
-		  <button type="button" class="btn btn-secondary">Middle</button>
-		  <button type="button" class="btn btn-secondary">Right</button>
-		  <button type="button" class="btn btn-secondary">Right</button>
-		  <button type="button" class="btn btn-secondary">Right</button>
-		  <button type="button" class="btn btn-secondary">Right</button>
+			@foreach($navbars as $navbar)
+				<button type="button" class="btn btn-secondary">{{$navbar->SName}}</button>
+			@endforeach
 		</div>
 	</div>

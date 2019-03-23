@@ -11,12 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('bbs.home.index');
-});
+Route::get('/', 'bbs\home\IndexController@index');
 
 Route::group(['prefix'=>'bbs/home','namespace'=>'bbs\home'],function(){
 	Route::get('login.html','IndexController@login');
 	Route::get('add.html','IndexController@addUser');
-	
+	Route::post('store.html','IndexController@store');
 });

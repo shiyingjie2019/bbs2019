@@ -3,7 +3,8 @@
 @section('content')
 	<h1 id="subject">
 		<img src="{{url('images\logo.png')}}" alt="">
-		<a href="{{asset('bbs/home/add.html')}}" class="add-user">Add</a>&nbsp;&nbsp; <a href="{{asset('/')}}" class="add-user">首页</a>
+		<a href="{{asset('bbs/home/add.html')}}" class="add-user"><button type="button" class="btn btn-primary">Add</button></a>&nbsp;&nbsp; 
+		<a href="{{asset('/')}}" class="add-user"><button type="button" class="btn btn-primary">首页</button></a>
 	</h1>
 	@include('bbs.layout.navbar')
 	<form action="">
