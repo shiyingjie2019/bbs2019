@@ -12,11 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('bbs.home.index');
 });
 
-Route::group(['prefix'=>'database/query','namespace'=>'database\query'],function(){
-	Route::get('index.html','IndexController@index');
-	Route::get('edit-{id}','IndexController@edit');
-	Route::get('destroy-{id}','IndexController@destroy');
+Route::group(['prefix'=>'bbs/home','namespace'=>'bbs\home'],function(){
+	Route::get('login.html','IndexController@login');
+	Route::get('add.html','IndexController@addUser');
+	
 });
