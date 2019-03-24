@@ -17,4 +17,13 @@ Route::group(['prefix'=>'bbs/home','namespace'=>'bbs\home'],function(){
 	Route::get('login.html','IndexController@login');
 	Route::get('add.html','IndexController@addUser');
 	Route::post('store.html','IndexController@store');
+	Route::post('loginCheck.html','IndexController@loginCheck');
+});
+
+Route::get('/admin','bbs\admin\IndexController@login');
+
+
+Route::group(['prefix'=>'bbs/admin','namespace'=>'bbs\admin'],function(){
+	Route::get('login.html','IndexController@login');
+	Route::post('loginCheck.html','IndexController@loginCheck');
 });

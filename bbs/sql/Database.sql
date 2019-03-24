@@ -14,7 +14,7 @@ CREATE TABLE BbsUser(#用户表
 	URegDate			 DATETIME	 NOT NULL DEFAULT CURRENT_TIMESTAMP,	#创建时间
 	UState				 INT,							#用户状态
 	UPoint				 INT,							#用户积分
-	UIsSectioner		 INT            default 0					#是否为版主,默认不是版主
+	UIsSectioner		 INT            default 0		#0普通用户 1版主			#是否为版主,默认不是版主
 	);
 
 

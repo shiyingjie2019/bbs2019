@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\bbs\home;
+namespace App\Http\Controllers\bbs\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Models\Bbssession;
 use App\Http\Models\Bbsuser;
+
 
 class IndexController extends Controller
 {
@@ -15,36 +16,10 @@ class IndexController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {	$navbars = Bbssession::all();
-		
-		return view('bbs.home.index')->with('navbars',$navbars);
-		
+    {
+        echo  "admin";
     }
-	// Login 
-	public function login(){
-		$navbars = Bbssession::all();
-		
-		return view('bbs.home.login')->with('navbars',$navbars);
-	}
-	public function loginCheck(Request $request){
-		//验证登录用户名密码
-		$data = $request->except(['_token']);
-		$data['UPassword']=md5($data['UPassword']);
-		$record = Bbsuser::where('UName','=',$data['UName'])->where('UPassword','=',$data['UPassword'])->get();
-		//跳转到首页
-		if($record->first()){
-			
-		$navbars = Bbssession::all();
-		return view('bbs.home.index')->with('navbars',$navbars);
-		}
-		echo "用户名或密码错误";
-	}
-	// add 
-	public function addUser()
-	{	$navbars = Bbssession::all();
-	
-		return view('bbs.home.addUser')->with('navbars',$navbars);
-	}
+
     /**
      * Show the form for creating a new resource.
      *
@@ -54,7 +29,27 @@ class IndexController extends Controller
     {
         //
     }
-
+	public function login()
+	{
+		$navbars = Bbssession::all();
+		
+		return view('bbs.admin.login')->with('navbars',$navbars);
+	}
+	public function loginCheck(Request $request)
+	{	
+		$data = $request->except(['_token']);
+		$data['UPassword']=md5($data['UPassword']);
+		$record = Bbsuser::where('UName','=',$data['UName'])->where('UPassword','=',$data['UPassword'])->where('UIsSectioner','=',1)->get();
+		
+		if($record->first())
+		{
+			echo "logining";
+		}
+		else{
+			echo  "woring";
+		}
+		
+	}
     /**
      * Store a newly created resource in storage.
      *
@@ -64,10 +59,6 @@ class IndexController extends Controller
     public function store(Request $request)
     {
         //
-		$data = $request->except(['_token']);
-		$data['UPassword']=md5($request['UPassword']);
-		Bbsuser::create($data);
-		
     }
 
     /**
@@ -114,5 +105,4 @@ class IndexController extends Controller
     {
         //
     }
-	
 }
