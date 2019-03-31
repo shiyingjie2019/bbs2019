@@ -43,7 +43,9 @@ class IndexController extends Controller
 		
 		if($record->first())
 		{
-			echo "logining";
+			$records = Bbsuser::all();
+			
+			return view('bbs.admin.index')->with('records',$records);
 		}
 		else{
 			echo  "woring";

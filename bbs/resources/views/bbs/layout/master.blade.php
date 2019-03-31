@@ -10,7 +10,7 @@
 	<title>@yield('title')</title>
 </head>
 <body>
-	<div id="container">
+	<div class="container">
 		@section('content')
 		
 		@show

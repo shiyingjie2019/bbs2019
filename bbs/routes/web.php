@@ -18,6 +18,9 @@ Route::group(['prefix'=>'bbs/home','namespace'=>'bbs\home'],function(){
 	Route::get('add.html','IndexController@addUser');
 	Route::post('store.html','IndexController@store');
 	Route::post('loginCheck.html','IndexController@loginCheck');
+	Route::get('bbssession-{id}','IndexController@bbssession');
+	Route::get('create.html','IndexController@create');
+	Route::post('insertTopic.html','IndexController@intTc');
 });
 
 Route::get('/admin','bbs\admin\IndexController@login');

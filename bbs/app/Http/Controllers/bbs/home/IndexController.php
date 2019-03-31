@@ -14,16 +14,15 @@ class IndexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {	$navbars = Bbssession::all();
-		
-		return view('bbs.home.index')->with('navbars',$navbars);
+		return view('bbs.home.index')->with('navbars',$navbars)->with('request',$request);
 		
     }
 	// Login 
-	public function login(){
-		$navbars = Bbssession::all();
+	public function login(Request $request){
 		
+		$navbars = Bbssession::all();
 		return view('bbs.home.login')->with('navbars',$navbars);
 	}
 	public function loginCheck(Request $request){
@@ -33,7 +32,7 @@ class IndexController extends Controller
 		$record = Bbsuser::where('UName','=',$data['UName'])->where('UPassword','=',$data['UPassword'])->get();
 		//跳转到首页
 		if($record->first()){
-			
+		$request->session()->put('user', $record);
 		$navbars = Bbssession::all();
 		return view('bbs.home.index')->with('navbars',$navbars);
 		}
@@ -45,16 +44,29 @@ class IndexController extends Controller
 	
 		return view('bbs.home.addUser')->with('navbars',$navbars);
 	}
+	//分类
+	public function bbssession($id)
+	{
+		dd($id);
+	}
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   $navbars = Bbssession::all();
         //
+		$sessions =Bbssession::all();
+		return view('bbs.home.create')->with('navbars',$navbars)->with('sessions',$sessions);
     }
-
+	
+	
+	public function intTc(Request $request)
+	{
+		$data = $request->except(["_token"]);
+		dd($data);
+	}	
     /**
      * Store a newly created resource in storage.
      *
@@ -63,11 +75,12 @@ class IndexController extends Controller
      */
     public function store(Request $request)
     {
+		$navbars = Bbssession::all();
         //
 		$data = $request->except(['_token']);
 		$data['UPassword']=md5($request['UPassword']);
-		Bbsuser::create($data);
-		
+		$sql = Bbsuser::create($data);
+		return view('bbs.home.index')->with('navbars',$navbars);
     }
 
     /**

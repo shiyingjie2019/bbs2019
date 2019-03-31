@@ -9,4 +9,6 @@ class Bbsuser extends Model
 	public $timestamps = false;
     //
 	public $table='bbsuser';
+	public $guarded = [];
+
 }

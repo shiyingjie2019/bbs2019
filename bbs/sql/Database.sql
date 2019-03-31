@@ -8,10 +8,10 @@ CREATE TABLE BbsUser(#用户表
 	UPassword			 VARCHAR(50)	 NOT NULL,				#密码
 	UEmail 				 VARCHAR(20)	 NOT NULL,				#电子邮件
 	UBirthday			 VARCHAR(20),						#生日
-	USex 				 INT		     NOT NULL,			#性别
+	USex 				 INT		     NOT NULL,			#性别  男0 女1
 	UHead				 VARCHAR(20),						#头像
 	USatement			 VARCHAR(20),						#用户备注
-	URegDate			 DATETIME	 NOT NULL DEFAULT CURRENT_TIMESTAMP,	#创建时间
+	URegDate			 DATETIME	  DEFAULT CURRENT_TIMESTAMP,	#创建时间
 	UState				 INT,							#用户状态
 	UPoint				 INT,							#用户积分
 	UIsSectioner		 INT            default 0		#0普通用户 1版主			#是否为版主,默认不是版主
@@ -39,7 +39,7 @@ CREATE TABLE BbsTopic(#主贴表
 	TEmotion		VARCHAR(20),							#发帖表情
 	TTOPIC			VARCHAR(10)	NOT NULL,					#标题
 	TContents		VARCHAR(50)	NOT NULL,					#正文
-	TTime			DATETIME	NOT NULL DEFAULT CURRENT_TIMESTAMP,#发帖时间
+	TTime			DATETIME	 DEFAULT CURRENT_TIMESTAMP,#发帖时间
 	TClickCount		INT,									#点击率
 	TFlag			INT,									#状态
 	TLastReplyUseID INT,									#最后恢复用户id
@@ -54,7 +54,7 @@ CREATE TABLE BbsReply(#跟帖表
 	RUID			INT 		NOT	NULL,					#发表人ID
 	TEmotion		VARCHAR(20)	NOT	NULL,					#发表表情
 	RContent		VARCHAR(20)	NOT	NULL,					#回帖内容
-	RTime			DATETIME	NOT	NULL DEFAULT CURRENT_TIMESTAMP#回帖时间
+	RTime			DATETIME	 DEFAULT CURRENT_TIMESTAMP#回帖时间
 	);
 
 alter table bbssession modify SID INT auto_increment ;
