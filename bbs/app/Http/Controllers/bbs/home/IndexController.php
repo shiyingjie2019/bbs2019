@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Models\Bbssession;
 use App\Http\Models\Bbsuser;
+use App\Http\Models\Bbstopic;
 
 class IndexController extends Controller
 {
@@ -15,8 +16,11 @@ class IndexController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {	$navbars = Bbssession::all();
-		return view('bbs.home.index')->with('navbars',$navbars)->with('request',$request);
+    {	
+		
+		$records = Bbstopic::all();
+		$navbars = Bbssession::all();
+		return view('bbs.home.index')->with('navbars',$navbars)->with('records',$records);
 		
     }
 	// Login 
@@ -32,12 +36,28 @@ class IndexController extends Controller
 		$record = Bbsuser::where('UName','=',$data['UName'])->where('UPassword','=',$data['UPassword'])->get();
 		//跳转到首页
 		if($record->first()){
-		$request->session()->put('user', $record);
+		$request->session()->put('user', $record[0]['original']);
+		//查询分类
+		$records = Bbstopic::all();
 		$navbars = Bbssession::all();
-		return view('bbs.home.index')->with('navbars',$navbars);
+		return view('bbs.home.index')->with('navbars',$navbars)->with('records',$records);
 		}
 		echo "用户名或密码错误";
 	}
+	public function outLogin(Request $request)
+	{
+		$request->session()->forget('user');
+		$records = Bbstopic::all();
+		$navbars = Bbssession::all();
+		return view('bbs.home.index')->with('navbars',$navbars)->with('records',$records);
+	}
+	
+	
+	
+	
+	
+	
+	
 	// add 
 	public function addUser()
 	{	$navbars = Bbssession::all();
@@ -65,7 +85,15 @@ class IndexController extends Controller
 	public function intTc(Request $request)
 	{
 		$data = $request->except(["_token"]);
-		dd($data);
+		$data['TUID'] = $request->session()->get('user')['UID'];
+		$lastID = Bbstopic::insertGetId($data);
+		if($lastID==null)
+		{
+			echo "发帖失败,稍后重试!";
+		}
+		$records = Bbstopic::all();
+		$navbars = Bbssession::all();
+		return view('bbs.home.index')->with('navbars',$navbars)->with('records',$records);
 	}	
     /**
      * Store a newly created resource in storage.
