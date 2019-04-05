@@ -22,6 +22,7 @@ Route::group(['prefix'=>'bbs/home','namespace'=>'bbs\home'],function(){
 	Route::get('create.html','IndexController@create');
 	Route::post('insertTopic.html','IndexController@intTc');
 	Route::get('outLogin.html','IndexController@outLogin');
+	Route::get('userInfo-{TUID}','IndexController@userInfo');
 });
 
 Route::get('/admin','bbs\admin\IndexController@login');

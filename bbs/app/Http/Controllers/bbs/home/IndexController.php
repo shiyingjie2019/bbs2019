@@ -23,7 +23,7 @@ class IndexController extends Controller
 		return view('bbs.home.index')->with('navbars',$navbars)->with('records',$records);
 		
     }
-	// Login 
+	// Login 登录相关
 	public function login(Request $request){
 		
 		$navbars = Bbssession::all();
@@ -58,16 +58,11 @@ class IndexController extends Controller
 	
 	
 	
-	// add 
+	// add  添加相关
 	public function addUser()
 	{	$navbars = Bbssession::all();
 	
 		return view('bbs.home.addUser')->with('navbars',$navbars);
-	}
-	//分类
-	public function bbssession($id)
-	{
-		dd($id);
 	}
     /**
      * Show the form for creating a new resource.
@@ -81,6 +76,19 @@ class IndexController extends Controller
 		return view('bbs.home.create')->with('navbars',$navbars)->with('sessions',$sessions);
     }
 	
+	
+	
+	
+	
+	//分类
+	public function bbssession($id)
+	{
+		$records = Bbstopic::where('TSID','=',$id)->get();
+		$navbars = Bbssession::all();
+		$SName = Bbssession::where('SID','=',$id);
+		    //
+		return view('bbs.home.ses1')->with('navbars',$navbars)->with('records',$records)->with('SName',$SName);
+	}
 	
 	public function intTc(Request $request)
 	{
@@ -156,4 +164,8 @@ class IndexController extends Controller
         //
     }
 	
+	public function userInfo(Request $request, $id)
+	{
+		
+	}
 }

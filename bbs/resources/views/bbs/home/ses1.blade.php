@@ -1,5 +1,5 @@
 @extends('bbs.layout.master')
-@section('title',"BBS2019首页")
+@section('title',"title")
 @section('content')
 	<h1 id="subject">
 		<img src="{{url('images\logo.png')}}" alt="">
@@ -18,7 +18,7 @@
 
 <div class="row">
   <div class="col-md-9">
-	 <table class="table table-hover">
+	  <table class="table table-hover">
 	  	<tr>
 	  		<td>序号&nbsp;</td>
 	  		<td>标题</td>
@@ -35,5 +35,6 @@
 		@endforeach
 	  </table>
   </div>
- @include('bbs.layout.right')
+	 @include('bbs.layout.right')
+	
 @stop
